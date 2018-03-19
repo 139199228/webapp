@@ -5,9 +5,6 @@ const webpack = require('webpack')
 
 const isDev = process.env.NODE_ENV === 'development'//判断开发环境
 
-
-
-
 const config = {
     entry : {//主入口文件
         app : path.join(__dirname , '../client/app.js')
