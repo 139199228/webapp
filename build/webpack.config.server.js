@@ -14,7 +14,11 @@ module.exports = {
         rules:[
             {
                 test:/.jsx$/,
-                loader:'babel-loader'//只是webpack插件  安装babel-core核心文件
+                loader:'babel-loader',//只是webpack插件  安装babel-core核心文件
+                options:{
+                    cacheDirectory:true,
+                    plugins:['react-hot-loader/babel']
+                }
             },
             {
                 test:/.js$/,

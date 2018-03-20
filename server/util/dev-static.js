@@ -1,21 +1,22 @@
 const axios = require('axios')
 const webpack = require('webpack')
 const path = require('path')
-const memoryFs = require('memory-fs')
+const MemoryFs = require('memory-fs')
 const proxy = require('http-proxy-middleware')
 const serverConfig = require('../../build/webpack.config.server')
 const ReactDomServer = require('react-dom/server')
 const getTemplate = () => {
-    return new Promise((resolve,reject) => {
-        axios.get('http://loclhost:8889/public/index.html')
-        .then((res) => {
-            resolve(res.data)
+    return new Promise((resolve, reject) => {
+      axios.get('http://localhost:8888/public/index.html')
+        .then(res => {
+            console.log(res.data)
+          resolve(res.data)
         })
-        .catch(reject)
+       .catch(reject)
     })
-}
+  }
 const Module = module.constructor
-const mfs = new memoryFs
+const mfs = new MemoryFs
 const serverCompiler = webpack(serverConfig)
 serverCompiler.outputFileSystem = mfs
 let serverBundle
@@ -33,16 +34,13 @@ serverCompiler.watch({},(err,stats) => {
     m._compile(bundle,"server-entry.js")
     serverBundle = m.exports.default
 })
-
 module.exports = function (app) {
     app.use('/public',proxy({
-        target: 'http://localhost:8889'
+        target: 'http://localhost:8888'
     }))
     app.get('*',(req,res) => {  
         getTemplate().then(template => {
-            console.log(template)
             const content = ReactDomServer.renderTostring(serverBundle)
-            console.log(content)
             res.send(template.replace('<!-- app -->',content))
         })
     })
