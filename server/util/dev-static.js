@@ -9,7 +9,6 @@ const getTemplate = () => {
     return new Promise((resolve, reject) => {
       axios.get('http://localhost:8888/public/index.html')
         .then(res => {
-            console.log(res.data)
           resolve(res.data)
         })
        .catch(reject)
@@ -43,6 +42,6 @@ module.exports = function (app) {
             console.log(template)
             const content = ReactDomServer.renderToString(serverBundle)
             res.send(template.replace('<!-- app -->',content))
-        })
+        }).catch((err) => console.log(err))
     })
 }

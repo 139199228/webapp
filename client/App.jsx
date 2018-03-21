@@ -3,7 +3,7 @@ import React from 'react'
 export default class App extends React.Component {
     render(){//渲染组件
         return (
-            <div>app</div>
+            <div>app22233</div>
         )
     }
 }

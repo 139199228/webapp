@@ -45,8 +45,8 @@ if(isDev){//如果是开发环境
         ]
     }
     config.devServer = {//启动服务
-        host: '127.0.0.1',//访问地址
-        port: "8889",//端口号
+        host: '0.0.0.0',//访问地址
+        port: "8888",//端口号
         compress: true,
         hot: true,//启动热启动
         contentBase: path.join(__dirname,'../dist'),//服务器在哪个目录搭建
