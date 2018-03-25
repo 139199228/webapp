@@ -13,7 +13,7 @@
     "start": "node server/server.js",
     "lint": "eslint --ext .jsx --ext .js client/",
     "eslint-fix": "eslint --fix --ext .js --ext .jsx client/",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint" 
   },
   "repository": {
     "type": "git",
