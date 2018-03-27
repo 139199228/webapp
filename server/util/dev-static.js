@@ -37,9 +37,8 @@ module.exports = function (app) {
     app.use('/public',proxy({
         target: 'http://localhost:8888'
     }))
-    app.get('*',(req,res) => {  
+    app.get('*',(req,res) => {
         getTemplate().then(template => {
-            console.log(template)
             const content = ReactDomServer.renderToString(serverBundle)
             res.send(template.replace('<!-- app -->',content))
         }).catch((err) => console.log(err))
