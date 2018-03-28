@@ -2,13 +2,20 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader' // eslint-disable-line
 import App from './views/App'
-// import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'mobx-react'
+import appState from './store/app-state'
+
 // ReactDOM.hydrate(<App></App>,document.getElementById('root'));
 const root = document.getElementById('root')
 const render = (Component) => {//动态渲染模板
     ReactDOM.hydrate(
       <AppContainer>
-          <Component />
+          <Provider appState={appState}>
+            <BrowserRouter>
+             <Component />
+            </BrowserRouter>
+          </Provider>
       </AppContainer>,
     root
     )
