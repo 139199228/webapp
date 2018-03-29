@@ -37,6 +37,9 @@ if(isDev){//如果是开发环境
         publicPath:"/public/",
         historyApiFallback:{//当我们搭建spa应用时非常有用，它使用的是HTML5 History Api，任意的跳转或404响应可以指向 index.html 页面
             index:"/public/index.html"
+        },
+        proxy:{
+          "/api":'http://localhost:3333'
         }
     }
     config.plugins.push(new webpack.HotModuleReplacementPlugin())//热启动模块  添加删除无需重新加载
