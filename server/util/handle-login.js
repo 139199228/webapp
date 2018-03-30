@@ -1,10 +1,10 @@
 const router = require('express').Router()
 const axios = require('axios')
 
-const baseUrl = 'https://cnodejs.org/api/v1'
+const baseUrl = 'http://cnodejs.org/api/v1'
 router.post(`/login`,(req,res,next) => {
     axios.post(`${baseUrl}/accesstoken`,{
-      accessToken:req.body.accessToken
+      accesstoken:req.body.accessToken
     })
       .then(resp => {
         console.log(resp)
@@ -25,7 +25,7 @@ router.post(`/login`,(req,res,next) => {
         if(err.response){
           res.json({
             success:false,
-            data:resp.data
+            data:err.response.data
           })
         }else{
           next(err)

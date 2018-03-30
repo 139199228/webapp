@@ -9,7 +9,7 @@ const app = express()
 const isDev = process.env.NODE_ENV === 'development' //是开发模式
 
 app.use(bodyParser.json())//json格式
-app.use(bodyParser.urlencoded({extended:false}))//对应http  请求类型
+app.use(bodyParser.urlencoded({ extended:false }))//对应http  请求类型
 app.use(session({
   maxAge: 10*60*1000,
   name:"tid",
